@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Quiz!</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="opening_window">
+      <h1>Selamat Bermain!</h1>
+      <button onclick="startQuiz()">Play Game</button>
+    </div>
+
+    <div id="quiz_window" class="hidden">
+      <h1 id="question"></h1>
+
+      <input type="radio" name="choises" data-id="0" id="choises0" />
+      <label for="choises0" id="choiseText0"></label>
+
+      <input type="radio" name="choises" data-id="1" id="choises1" />
+      <label for="choises1" id="choiseText1"></label>
+
+      <input type="radio" name="choises" data-id="2" id="choises2" />
+      <label for="choises2" id="choiseText2"></label>
+
+      <input type="radio" name="choises" data-id="3" id="choises3" />
+      <label for="choises3" id="choiseText3"></label>
+
+      <button onCLick="nextQuestion()">Next</button>
+    </div>
+
+    <div id="closing_window" class="hidden">
+      <h1>Quiz Selesai</h1>
+      <h1 id="scoreText"></h1>
+    </div>
+
+    <script>
+      //####################################
+      //############## DATA ################
+      //####################################
+      const DB_QUIZ = [
+        {
+          question: "Apa Itu SK?",
+          answer: ["SiKomo", "Sekolah Koding", "Sayur Ketupat", "Saus Kecap"],
+        },
+        {
+          question: "Sop dibalik?",
+          answer: ["Pos", "Ops", "Spo", "Tumpah"],
+        },
+        {
+          question: "Programmer itu?",
+          answer: ["Tangguh", "Lemah", "Cengeng", "Apa?"],
+        },
+      ];
+
+      const CORRECT_ANSWER = [1, 3, 0];
+
+      //#######################################
+      //########### SETUP QUESTIONS ###########
+      //#######################################
+      function startQuiz() {
+        document.getElementById("opening_window").style.display = "none";
+        document.getElementById("quiz_window").style.display = "block";
+      }
+
+      let current_q = 0;
+      let total_score = 0;
+      let saved_answer = [];
+      document.addEventListener("DOMContentLoaded", function (event) {
+        setupQuestion();
+      });
+      function setupQuestion() {
+        document.getElementById("question").innerText =
+          DB_QUIZ[current_q]["question"];
+
+        document.getElementById("choiseText0").innerText =
+          DB_QUIZ[current_q]["answer"][0];
+
+        document.getElementById("choiseText1").innerText =
+          DB_QUIZ[current_q]["answer"][1];
+
+        document.getElementById("choiseText2").innerText =
+          DB_QUIZ[current_q]["answer"][2];
+
+        document.getElementById("choiseText3").innerText =
+          DB_QUIZ[current_q]["answer"][3];
+      }
+
+      function nextQuestion() {
+        current_q++;
+
+        saveAnswer();
+
+        if (current_q > DB_QUIZ.length - 1) stopQuiz();
+
+        resetState();
+        setupQuestion();
+      }
+      function resetState() {
+        const choosedAnswer = document.querySelector(
+          'input[name="choises"]:checked'
+        );
+        if (choosedAnswer != null) choosedAnswer.checked = false;
+      }
+      function stopQuiz() {
+        checkScore();
+
+        document.getElementById("quiz_window").style.display = "none";
+        document.getElementById("closing_window").style.display = "block";
+
+        document.getElementById("scoreText").innerHTML =
+          "score kamu ..." + total_score;
+
+        return;
+      }
+      function saveAnswer() {
+        const answer = document.querySelector('input[name="choises"]:checked');
+        if (answer != null) {
+          saved_answer.push(parseInt(answer.getAttribute("data-id")));
+        } else {
+          // default answer A
+          saved_answer.push(0);
+        }
+      }
+      function checkScore() {
+        for (i = 0; i < saved_answer.length; i++) {
+          if (saved_answer[i] == CORRECT_ANSWER[i]) {
+            total_score += 100;
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
