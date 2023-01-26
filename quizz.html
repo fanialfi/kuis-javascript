@@ -2,113 +2,50 @@
 <html lang="en">
 
 <head>
-  <title>JavaScript Quizz</title>
+  <title>Kuis JavaScript</title>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <style>
-    body {
-      background-color: #cf00ff;
-    }
-
-    .start {
-      display: flex;
-      flex-direction: column;
-    }
-
-    section h1 {
-      color: whitesmoke;
-      text-shadow: 2px 2px rgba(0, 0, 0, 0.5);
-      text-align: center;
-      font-size: 4rem;
-      font-weight: bold;
-      font-family: sans-serif;
-    }
-
-    .start button {
-      padding: 2em;
-      margin: auto;
-      border-radius: 10px;
-    }
-
-    .homepage,
-    .end {
-      display: none;
-    }
-
-    .homepage {
-      flex-direction: column;
-      align-self: center;
-      text-align: center;
-    }
-
-    .box {
-      width: 80%;
-      height: 200px;
-      background-color: whitesmoke;
-      margin: auto;
-      border-radius: 10px;
-      box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.5);
-      position: relative;
-      padding: 50px;
-      box-sizing: border-box;
-    }
-
-    .box label {
-      font-size: 1.5rem;
-    }
-
-    .box button {
-      position: absolute;
-      padding: 1em;
-      width: 4em;
-      bottom: 30px;
-      left: 50%;
-      right: 50%;
-    }
-
-    h6 {
-      text-align: center;
-      font-size: 1rem;
-      color: whitesmoke;
-    }
-
-    .lagi {
-      text-align: center;
-      padding: 20px;
-      margin: 10px 50%;
-      border-radius: 5px;
-    }
-  </style>
+  <link rel="stylesheet" href="./css/css-reset.css" />
+  <link href="./css/style.css" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Aboreto&display=swap" rel="stylesheet" />
 </head>
 
 <body>
-  <section class="start">
-    <h1>SELAMAT DATANG DI QUIZ JAVASCRIPT</h1>
-    <button type="button" onclick="starttingQuiz()">start quiz</button>
-  </section>
-
-  <section class="homepage">
-    <h1 id="soal"></h1>
-    <div class="box">
-      <input id="choises1" type="radio" name="choises" data-id="0" />
-      <label for="choises1"></label>
-      <input id="choises2" type="radio" name="choises" data-id="1" />
-      <label for="choises2"></label>
-      <input id="choises3" type="radio" name="choises" data-id="2" />
-      <label for="choises3"></label>
-      <input id="choises4" type="radio" name="choises" data-id="3" />
-      <label for="choises4"></label>
-
-      <button type="button" id="next" onclick="questionNext()">Next</button>
+  <!-- bagian Quizz -->
+  <section id="quizz" class="quizz">
+    <h1 id="pertanyaan"></h1>
+    <div class="soal">
+      <div class="item1">
+        <input type="radio" name="choose" id="choose1" data-id="0" />
+        <label for="choose1"></label>
+      </div>
+      <div class="item2">
+        <input type="radio" name="choose" id="choose2" data-id="1" />
+        <label for="choose2"></label>
+      </div>
+      <div class="item3">
+        <input type="radio" name="choose" id="choose3" data-id="2" />
+        <label for="choose3"></label>
+      </div>
+      <div class="item4">
+        <input type="radio" name="choose" id="choose4" data-id="3" />
+        <label for="choose4"></label>
+      </div>
     </div>
+    <button type="button" onclick="nextQuestion()">NEXT</button>
   </section>
+  <!-- akhir dari bagian Quizz -->
 
-  <section class="end">
-    <h1>GAME SELESAI</h1>
-    <h6 class="total-score"></h6>
-    <button type="button" class="lagi" onclick="lagi()">lagi</button>
+  <!-- awal bagian Score -->
+  <section id="selesai" class="selesai">
+    <h1>Quizz Selesai</h1>
+    <h4 id="score"></h4>
   </section>
-  <script src="quizz.js"></script>
+  <!-- akhir bagian Score -->
+  <script src="./quizz.js"></script>
 </body>
 
 </html>

@@ -11,9 +11,9 @@
 ### Todo Membuat Aplikasi Kuis by [fanialfi](http://github.com/fanialfi "github fanialfi")
 
 - [x] membuat struktur file HTML
-- [ ] membuat data soal dan jawaban
-- [ ] merancang sistem pertanyaan
-- [ ] menyimpan jawaban
-- [ ] deteksi quiz selesai
-- [ ] penilaian dan perlihatkan score
-- [ ] memperbaiki tampilan
+- [x] membuat data soal dan jawaban
+- [x] merancang sistem pertanyaan
+- [x] menyimpan jawaban
+- [x] deteksi quiz selesai
+- [x] penilaian dan perlihatkan score
+- [x] memperbaiki tampilan
